@@ -1,0 +1,75 @@
+﻿@model BeHired.Models.JobPost
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.category_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.category_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.period)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.period)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_application_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_application_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

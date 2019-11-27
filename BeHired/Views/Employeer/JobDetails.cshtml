@@ -1,0 +1,75 @@
+﻿@model BeHired.Models.JobPost
+
+@{
+    ViewBag.Title = "JobDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    
+    <div class="col-md-12">
+        <div class="row">
+            <div class="basic-information">
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="profile-content">
+                        <h3>@Html.DisplayFor(model => model.job_title)<span></span></h3>
+                       
+                        <ul class="information">
+                            <li><span>Category:</span>@Html.DisplayFor(model => model.Category.category_name)</li>
+                            <li><span>Period:</span>@Html.DisplayFor(model => model.period)</li>
+                            <li><span>Experience:</span>@Html.DisplayFor(model => model.experience)</li>
+
+                            <li><span>Last Application Date:</span>@Html.DisplayFor(model => model.last_application_date)</li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-user fa-fw"></i> Job Description
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <p>@Html.DisplayFor(model => model.job_description)</p>
+                    </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-leaf fa-fw"></i>  Required Skills:<a href="/Employeer/AddJobSkill/@Model.JobId" style="float:right;"><i class="fa fa-plus-square fa-2x"></i></a>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            @if (Model.JobSkillSets == null)
+                            {
+                                <p>No education details added.</p>
+                            }
+                            else
+                            {
+
+                                foreach (var item in Model.JobSkillSets)
+                                {
+                                    <ul>
+                                        
+                                        <li>
+                                            @Html.DisplayFor(modelItem => item.skill) (@Html.DisplayFor(modelItem => item.skill_level))
+                                        </li>
+                                       
+                                            @Html.ActionLink("Edit", "EditJobSkill", new { id = item.JobSkillId }) |
+                                            @Html.ActionLink("Delete", "DeleteJobSkill", new { id = item.JobSkillId })
+                                        
+
+                                    </ul>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+       
+       </div>        
+                <p>
+                    @Html.ActionLink("Edit", "EditJobPost", new { id = Model.JobId }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+</div>

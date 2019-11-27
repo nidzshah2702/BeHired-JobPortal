@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BeHired.Models.Company>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<section class="inner-banner" style="backend:#242c36 url(https://via.placeholder.com/1920x600)no-repeat;">
+    <div class="container">
+        <div class="caption">
+            <h2>Companies</h2>
+            <p>Get your Popular Companies <span>202 Companies</span></p>
+        </div>
+    </div>
+</section>
+
+<section class="jobs">
+    <div class="container">
+
+
+        <div class="companies">
+            @foreach (var item in Model)
+            {
+                <div class="company-list">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <div class="company-logo">
+                                <img src="/img/building.jpg" class="img-responsive" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <div class="company-content">
+                                <h3>  @Html.DisplayFor(modelItem => item.company_name)</h3>
+                                <p><span class="company-name"><i class="fa fa-briefcase"></i> @Html.DisplayFor(modelItem => item.BusinessStream.business_stream_name)</span><span class="company-location"><i class="fa fa-map-marker"></i>   @Html.DisplayFor(modelItem => item.address)</span><span class="package"><br />
+                                    <i class="fa fa-globe"></i>@Html.DisplayFor(modelItem => item.company_website_url)</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <button type="submit" class="btn view-job" name="View Job">@Html.ActionLink("Details", "Details", new { id = item.CompanyId }) </button>
+                        </div>
+                    </div>
+                </div>
+
+            }
+           
+
+            <div class="row">
+                <input type="button" class="btn brows-btn" value="Brows All Jobs" />
+            </div>
+        </div>
+    </div>
+</section>

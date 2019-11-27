@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BeHired.Models.Skill>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Profile.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.skill_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.skill_level)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profile.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.skill_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.skill_level)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SkillId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SkillId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SkillId })
+        </td>
+    </tr>
+}
+
+</table>

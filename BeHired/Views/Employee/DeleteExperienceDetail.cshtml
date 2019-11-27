@@ -1,0 +1,90 @@
+﻿@model BeHired.Models.ExperienceDetail
+
+@{
+    ViewBag.Title = "DeleteExperienceDetail";
+}
+
+<h2>DeleteExperienceDetail</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ExperienceDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_location_city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_location_city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_location_state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_location_state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_location_country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_location_country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ViewProfile")
+        </div>
+    }
+</div>

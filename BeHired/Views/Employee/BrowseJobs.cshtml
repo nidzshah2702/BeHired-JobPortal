@@ -1,0 +1,161 @@
+﻿@model IEnumerable<BeHired.Models.JobPost>
+
+@{
+    ViewBag.Title = "BrowseJobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inner-banner" style="backend:#242c36 url(https://via.placeholder.com/1920x600)no-repeat;">
+    <div class="container">
+        <div class="caption">
+            <h2>Get your jobs</h2>
+            <p> <span>@ViewBag.count jobs</span></p>
+        </div>
+    </div>
+</section>
+
+<section class="jobs">
+    <div class="container">
+       
+        <div class="companies">
+            <div class="row heading">
+                <h2>Search Your Job</h2>
+            </div>
+
+            <div class="row top-pad">
+                <div class="filter">
+                    <div class="col-md-2 col-sm-3">
+                        <p>Search By:</p>
+                    </div>
+                    @using (Html.BeginForm("BrowseJobs","Employee",FormMethod.Post,new { id="demoform",name="demoform"}))
+                    {
+                        <div class="col-md-10 col-sm-9 pull-right">
+                            <ul class="filter-list">
+                                @if (ViewBag.period != null && ViewBag.period.Contains("Part Time"))
+                                {
+                                    <li>
+                                        <input id="checkbox-1" class="checkbox-custom" name="period" value="Part Time" type="checkbox" checked="" onchange="selectedindexchanged();">
+                                        <label for="checkbox-1" class="part-time checkbox-custom-label">Part Time</label>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <input id="checkbox-1" class="checkbox-custom" name="period" value="Part Time" type="checkbox" onchange="selectedindexchanged();">
+                                        <label for="checkbox-1" class="part-time checkbox-custom-label">Part Time</label>
+                                    </li>
+                                }
+                               @if (ViewBag.period != null && ViewBag.period.Contains("Full Time"))
+                               {
+                                <li>
+                                    <input id="checkbox-2" class="checkbox-custom" name="period" value="Full Time" type="checkbox" checked="" onchange="selectedindexchanged();">
+                                    <label for="checkbox-2" class="full-time checkbox-custom-label">Full Time</label>
+                                </li>
+                               }
+                               else
+                               {
+                                <li>
+                                    <input id="checkbox-2" class="checkbox-custom" name="period" value="Full Time" type="checkbox" onchange="selectedindexchanged();">
+                                    <label for="checkbox-2" class="full-time checkbox-custom-label">Full Time</label>
+                                </li>
+
+                               }
+
+                               @if (ViewBag.period != null && ViewBag.period.Contains("Trainee"))
+                               {
+                                <li>
+                                    <input id="checkbox-3" class="checkbox-custom" name="period" value="Trainee" type="checkbox" checked="" onchange="selectedindexchanged();">
+                                    <label for="checkbox-3" class="freelancing checkbox-custom-label">Trainee</label>
+                                </li>
+
+                               }
+                               else
+                               {
+                                <li>
+                                    <input id="checkbox-3" class="checkbox-custom" name="period" value="Trainee" type="checkbox" onchange="selectedindexchanged();">
+                                    <label for="checkbox-3" class="freelancing checkbox-custom-label">Trainee</label>
+                                </li>
+
+                               }
+
+                                    @if (ViewBag.period != null && ViewBag.period.Contains("Internship"))
+                                    {
+                                        <li>
+                                            <input id="checkbox-4" class="checkbox-custom" name="period" value="Internship" type="checkbox" checked="" onchange="selectedindexchanged();">
+                                            <label for="checkbox-4" class="internship checkbox-custom-label">Internship</label>
+                                        </li>
+
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <input id="checkbox-4" class="checkbox-custom" name="period" value="Internship" type="checkbox" onchange="selectedindexchanged();">
+                                            <label for="checkbox-4" class="internship checkbox-custom-label">Internship</label>
+                                        </li>
+                                    }
+
+
+
+
+                               
+
+                            </ul>
+                        </div>
+                    }
+                   
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                int f = 0;
+                <div class="company-list">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <div class="company-logo">
+                                <img src="img/google.png" class="img-responsive" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <div class="company-content">
+                                <h3>    @Html.DisplayFor(modelItem => item.job_title)<span class="full-time">  @Html.DisplayFor(modelItem => item.period)</span></h3>
+                                <p><span class="company-name"><i class="fa fa-building"></i>   @Html.DisplayFor(modelItem => item.Company.company_name)</span><span class="company-location"><i class="fa fa-braille"></i>   @Html.DisplayFor(modelItem => item.Category.category_name)</span><span class="package"><i class="fa fa-trophy"></i>  @Html.DisplayFor(modelItem => item.experience) exp</span></p>
+                            </div>
+                        </div>
+                       @foreach (var job in ViewBag.appliedjobs)
+                       {
+                          
+                           if (job.JobId == item.JobId)
+                           {
+                               f = 1;
+                                    <div class="col-md-2 col-sm-2">
+                                     <button type="button" class="btn btn-info" name="View Job"> Applied</button>
+                                    </div>
+                                break;
+                            }
+                        }
+                        @if(f==0){
+                                <div class="col-md-2 col-sm-2">
+                                 <button type="submit" class="btn view-job" name="View Job">@Html.ActionLink("Apply", "./../Companies/JobDetails", new { id = item.JobId })</button>
+                                </div>
+                        }
+                        
+                    </div>
+                </div>
+
+
+            }
+        </div>
+        <div class="row">
+            <button class="btn brows-btn" value="Back">@Html.ActionLink("Back", "Index")</button>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function selectedindexchanged() {
+        document.demoform.submit();
+    }
+    
+    
+    </script>

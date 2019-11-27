@@ -1,0 +1,48 @@
+﻿@model BeHired.Models.JobSkillSet
+
+@{
+    ViewBag.Title = "EditJobSkill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditJobSkill</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>JobSkillSet</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.JobSkillId)
+        @Html.HiddenFor(model => model.JobId)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.skill, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.skill, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.skill, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.skill_level, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("skill_level",null," ", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.skill_level, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

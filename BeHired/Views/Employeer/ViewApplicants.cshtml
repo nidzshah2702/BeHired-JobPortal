@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BeHired.Models.JobApplication>
+
+@{
+    ViewBag.Title = "ViewApplicants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="inner-banner" style="backend:#242c36 url(https://via.placeholder.com/1920x600)no-repeat;">
+    <div class="container">
+        <div class="caption">
+            <h2>Applicants</h2>
+            <p>Get your Popular Companies <span>202 Companies</span></p>
+        </div>
+    </div>
+</section>
+
+<section class="jobs">
+    <div class="container">
+
+
+        <div class="companies">
+            @foreach (var item in Model)
+            {
+                <div class="company-list">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <div class="company-logo">
+                                <img src="/img/building.jpg" class="img-responsive" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <div class="company-content">
+                                <h3>  @Html.DisplayFor(modelItem => item.Profile.firstname) @Html.DisplayFor(modelItem => item.Profile.lastname)</h3>
+                                <p>
+                                    <span class="company-name"><i class="fa fa-briefcase"></i> @Html.DisplayFor(modelItem => item.JobPost.job_title)</span><pan class="company-location"><i class="fa fa-dot-circle-o"></i>   @Html.DisplayFor(modelItem => item.status)<span class="package">
+                                        <br />
+                                        <i class="fa fa-globe"></i>@Html.DisplayFor(modelItem => item.JobPost.experience)
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        @if (item.neworold == "yes")
+                           {
+                                
+                            <i class="fa fa-bell-o">NEW</i>
+
+                        }
+                       
+                        <div class="col-md-2 col-sm-2">
+                            <button type="submit" class="btn view-job" name="View Profile">@Html.ActionLink("View Profile", "ApplicantProfile", new { id = item.JobApplicationId }) </button>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+            <div class="row">
+                <input type="button" class="btn brows-btn" value="Brows All Jobs" />
+            </div>
+        </div>
+    </div>
+</section>

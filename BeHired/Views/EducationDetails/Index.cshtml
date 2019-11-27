@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BeHired.Models.EducationDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Profile.ProfileId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.certificate_degree_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.major)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.institute_university_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.starting_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.completion_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cgpa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profile.ProfileId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.certificate_degree_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.major)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.institute_university_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.starting_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.completion_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cgpa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EducationDetailId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EducationDetailId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EducationDetailId })
+        </td>
+    </tr>
+}
+
+</table>

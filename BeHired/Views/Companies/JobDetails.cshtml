@@ -1,0 +1,96 @@
+﻿@model BeHired.Models.JobPost
+
+@{
+    ViewBag.Title = "JobDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (!Request.IsAuthenticated)
+{
+    <script>
+        function check(id) {
+            window.alert("You are not loggedin");
+            location.href = "/Account/Login";
+        }
+    </script>
+}
+else if (User.IsInRole("Employee"))
+{
+
+    <script>
+        function check(id) {
+            location.href = "/Employee/ApplyNow/"+id;
+        }
+    </script>
+
+}
+else
+{
+    <script>
+        function check(id) {
+            window.alert("you cannot apply");
+        }
+    </script>
+
+}
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="basic-information">
+
+                <div class="col-md-10 col-sm-10">
+                    <div class="profile-content">
+                        <h3>@Html.DisplayFor(model => model.job_title)<span></span></h3>
+                        <p>@Html.DisplayFor(model => model.Company.company_name)</p>
+                        <ul class="information">
+                            <li><span>Category:</span>@Html.DisplayFor(model => model.Category.category_name)</li>
+                            <li><span>Period:</span>@Html.DisplayFor(model => model.period)</li>
+                            <li><span>Experience:</span>@Html.DisplayFor(model => model.experience)</li>
+
+                            <li><span>Last Application Date:</span>@Html.DisplayFor(model => model.last_application_date)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <button type="submit" class="btn view-job" name="View Job" onclick="check(@Html.DisplayFor(model => model.JobId))">ApplyNow</button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-user fa-fw"></i> Job Description
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <p>@Html.DisplayFor(model => model.job_description)</p>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-leaf fa-fw"></i>  Required Skills:
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <ul>
+                        @if (Model.JobSkillSets != null)
+
+                        {
+                            foreach (var item in Model.JobSkillSets)
+                            {
+                                <li>@Html.DisplayFor(modelItem => item.skill):@Html.DisplayFor(modelItem => item.skill_level)</li>
+                            }
+
+                        }
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p>
+      
+        @Html.ActionLink("Back to List", "ViewJobs",new {id=Model.CompanyId })
+    </p>
+</div>

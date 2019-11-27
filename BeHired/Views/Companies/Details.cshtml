@@ -1,0 +1,58 @@
+﻿@model BeHired.Models.Company
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<section class="profile-detail">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="basic-information">
+                    <div class="col-md-3 col-sm-3">
+                        <img src="/img/building.jpg" alt="" class="img-responsive">
+                    </div>
+                    <div class="col-md-9 col-sm-9">
+                        <div class="profile-content">
+                            <h2>  @Html.DisplayFor(model => model.company_name)<span>  @Html.DisplayFor(model => model.BusinessStream.business_stream_name)</span></h2>
+                            <p>Now Hiring(@ViewBag.count)</p>
+                            <ul class="information">
+                                <li><span>Address:</span>  @Html.DisplayFor(model => model.address)</li>
+                                <li><span>Contact:</span>  @Html.DisplayFor(model => model.contact)</li>
+                                <li><span>Website:</span>    @Html.DisplayFor(model => model.company_website_url)</li>
+                                <li><span>Employee:</span>50,000 - 70,000 employer</li>
+                                <li><span>From:</span>  @Html.DisplayFor(model => model.establishment_date)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-user fa-fw"></i> About  @Html.DisplayFor(model => model.company_name)
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p>     @Html.DisplayFor(model => model.description)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <button type="submit" class="btn view-job" name="View Job">@Html.ActionLink("View Jobs", "ViewJobs", new { id = Model.CompanyId }, new { @class = "text-white" }) </button>
+                    </div>
+
+
+
+
+                </div>
+               
+            </div>
+         
+        </div>
+       
+    </div>
+   
+</section>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

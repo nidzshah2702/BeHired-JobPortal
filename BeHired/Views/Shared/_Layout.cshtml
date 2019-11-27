@@ -1,0 +1,189 @@
+﻿@using Microsoft.AspNet.Identity
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Be Hired | Get your dream jobs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- All Plugin Css -->
+    <link rel="stylesheet" href="/Content/css/plugins.css">
+
+    <!-- Style & Common Css -->
+    <link rel="stylesheet" href="/Content/css/common.css">
+    <link rel="stylesheet" href="/Content/css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="@Url.Content("~/Content/themes/wui/AwesomeMvc.css")" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @*jquery needs to be at the top, for document.ready $(function(){ ... })*@
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-sticky bootsnav">
+
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html" style="font-size:40px; margin:auto;"><strong class="text-danger" style="margin:auto;"> Be Hired</strong></a>
+            </div>
+            <!-- End Header Navigation -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+
+
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+
+                            <li><a href="#">Home</a></li>
+                            <li>@Html.ActionLink("Companies", "Index", "Companies", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse</a>
+                                <ul class="dropdown-menu animated fadeOutUp" style="display: none; opacity: 1;">
+                                    @if (User.IsInRole("Employee"))
+                                    {
+                                        <li>@Html.ActionLink("Browse Jobs", "BrowseJobs", "Employee", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+                                        <li>@Html.ActionLink("View Profile", "ViewProfile", "Employee", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+
+                                    }
+                                    else
+                                    {
+                                        <li>@Html.ActionLink("Post Jobs", "PostJob", "Employeer", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+                                        <li>@Html.ActionLink("View Applications", "ViewApplicants", "Employeer", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+                                        <li>@Html.ActionLink("Company Profile", "ViewProfile", "Employeer", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+
+                                    }
+
+
+                                </ul>
+                            </li>
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        </ul>
+
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+
+                       <li><a href="#">Home</a></li>
+                            <li>@Html.ActionLink("Companies", "Index", "Companies", routeValues: null, htmlAttributes: new { id = "browsejobLink" })</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse</a>
+                            <ul class="dropdown-menu animated fadeOutUp" style="display: none; opacity: 1;">
+                                <li class="active"><a href="browse-job.html">Browse Jobs</a></li>
+                                <li><a href="company-detail.html">Job Detail</a></li>
+                                <li><a href="resume.html">Resume Detail</a></li>
+                            </ul>
+                        </li>
+                       
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+
+                }
+
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    @RenderBody()
+   
+    <footer>
+        <div class="container">
+            <div class="col-md-3 col-sm-6">
+                <h4>Featured Job</h4>
+                <ul>
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">Premium MBA Jobs</a></li>
+                    <li><a href="#">Access Database</a></li>
+                    <li><a href="#">Manage Responses</a></li>
+                    <li><a href="#">Report a Problem</a></li>
+                    <li><a href="#">Mobile Site</a></li>
+                    <li><a href="#">Jobs by Skill</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <h4>Latest Job</h4>
+                <ul>
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">Premium MBA Jobs</a></li>
+                    <li><a href="#">Access Database</a></li>
+                    <li><a href="#">Manage Responses</a></li>
+                    <li><a href="#">Report a Problem</a></li>
+                    <li><a href="#">Mobile Site</a></li>
+                    <li><a href="#">Jobs by Skill</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <h4>Reach Us</h4>
+                <address>
+                    <ul>
+                        <li>
+                            216, Krishna Hostel, Nadiad<br>
+                            Gujarat, India
+                        </li>
+                        <li>Email: nidzshah2702@gmail.com</li>
+                        <li>Call: 9512041314</li>
+                        <li>Skype: BeHired@skype</li>
+                        <li>FAX: 123 456 85</li>
+                    </ul>
+                </address>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <h4>Drop A Mail</h4>
+                <form>
+                    <input type="text" class="form-control input-lg" placeholder="Your Name">
+                    <input type="text" class="form-control input-lg" placeholder="Email...">
+                    <textarea class="form-control" placeholder="Message"></textarea>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+
+
+        </div>
+        <div class="copy-right">
+            <p>&copy;Copyright 2019 Be Hired </p>
+        </div>
+    </footer>
+    
+
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Scripts/owl.carousel.min.js"></script>
+    <script src="/Scripts/bootsnav.js"></script>
+    <script src="/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="@Url.Content("~/Scripts/AwesomeMvc.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/awem.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/utils.js")" type="text/javascript"></script>
+
+    @*call init after utils.js and validate.js*@
+    @Html.Awe().Init()
+
+    @*used in utils.init and sent on all post requests made by awe*@
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿@model BeHired.Models.ExperienceDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExperienceDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_location_city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_location_city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_location_state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_location_state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_location_country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_location_country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ExperienceDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
