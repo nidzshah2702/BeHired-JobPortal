@@ -342,7 +342,7 @@ namespace BeHired.Controllers
             db.SaveChanges();
              string body = "Dear " + profile.firstname + ",\n\n You havw successfully applied for JobId:" + id + "for the post of " + job.job_title + "at " + job.Company.company_name + ". The company will get back to you soon.";
             //string body = "Hello";
-            MailSender.SendEmail("behiredjobsportal@gmail.com","BeHired@123",profile.UserAccount.Email,"BeHired:Your have succesfully applied",body,MailFormat.Text,"");
+            MailSender.SendEmail("email","password",profile.UserAccount.Email,"BeHired:Your have succesfully applied",body,MailFormat.Text,"");
             return View();
         }
 
